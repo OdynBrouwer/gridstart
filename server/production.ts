@@ -13,6 +13,11 @@ app.use("/*", async (c: Context, next: Next) => {
   }
   await next();
 });
+
+// SPA route: /app → app.html
+app.get("/app", serveStatic({ path: "./dist/public/app.html" }));
+
+// Alles andere: statische bestanden
 app.get("/*", serveStatic({ root: "./dist/public" }));
 
 serve({
